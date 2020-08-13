@@ -171,7 +171,7 @@ jobs:
       env:
         GITHUB_ORG: djones6
         GITOPS_REPO_NAME: refarch-kc-gitops
-        GITOPS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
         SERVICE_NAME: fleetms
     - name: Update voyages-ms app-deploy.yaml in GitOps repo
       id: update-voyages-gitops
@@ -187,5 +187,5 @@ jobs:
       env:
         GITHUB_ORG: djones6
         GITOPS_REPO_NAME: refarch-kc-gitops
-        GITOPS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
         SERVICE_NAME: voyagesms
