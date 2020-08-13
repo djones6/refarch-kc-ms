@@ -88,11 +88,8 @@ jobs:
     - name: Save fleet-ms app-deploy.yaml
       uses: actions/upload-artifact@v2
       with:
-        name: ${SERVICE_NAME}-app-deploy.yaml
-        path: ${WORKDIR}/app-deploy.yaml
-      env:
-        WORKDIR: fleet-ms
-        SERVICE_NAME: fleetms
+        name: fleetms-app-deploy.yaml
+        path: fleet-ms/app-deploy.yaml
     - name: Build the voyages-ms docker image
       id: build-voyages-image
       run: |
@@ -124,11 +121,8 @@ jobs:
     - name: Save voyages-ms app-deploy.yaml
       uses: actions/upload-artifact@v2
       with:
-        name: ${SERVICE_NAME}-app-deploy.yaml
-        path: ${WORKDIR}/app-deploy.yaml
-      env:
-        WORKDIR: voyages-ms
-        SERVICE_NAME: voyagesms
+        name: voyagesms-app-deploy.yaml
+        path: voyages-ms/app-deploy.yaml
     - name: Webhook to GitOps repo
       id: gitops-repo-webhook
       uses: osowski/repository-dispatch@v1
@@ -146,17 +140,13 @@ jobs:
     - name: Retrieve fleet-ms app-deploy.yaml
       uses: actions/download-artifact@v2
       with:
-        name: ${SERVICE_NAME}-app-deploy.yaml
-        path: ${SERVICE_NAME}
-      env:
-        SERVICE_NAME: fleetms
+        name: fleetms-app-deploy.yaml
+        path: fleetms
     - name: Retrieve voyages-ms app-deploy.yaml
       uses: actions/download-artifact@v2
       with:
-        name: ${SERVICE_NAME}-app-deploy.yaml
-        path: ${SERVICE_NAME}
-      env:
-        SERVICE_NAME: voyagesms
+        name: voyagesms-app-deploy.yaml
+        path: voyagesms
     - name: Update fleet-ms app-deploy.yaml in GitOps repo
       id: update-fleet-gitops
       run: |
