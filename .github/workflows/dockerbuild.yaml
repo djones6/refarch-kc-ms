@@ -147,6 +147,13 @@ jobs:
       with:
         name: voyagesms-app-deploy.yaml
         path: voyagesms
+    - name: Configure git client
+      id: configure-git
+      run: |
+        git config --global user.email "$GITOPS_EMAIL"
+        git config --global user.name "GitOps Test"
+      env:
+        GITOPS_EMAIL: ${{ secrets.GITOPS_EMAIL }}
     - name: Update fleet-ms app-deploy.yaml in GitOps repo
       id: update-fleet-gitops
       run: |
