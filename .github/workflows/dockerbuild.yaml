@@ -35,6 +35,8 @@ jobs:
         validate_secret DOCKER_REPOSITORY ${DOCKER_REPOSITORY}
         validate_secret DOCKER_IMAGE_FLEET ${DOCKER_IMAGE_FLEET}
         validate_secret DOCKER_IMAGE_VOYAGES ${DOCKER_IMAGE_VOYAGES}
+        validate_secret GITOPS_EMAIL ${GITOPS_EMAIL}
+        validate_secret GITOPS_TOKEN ${GITOPS_TOKEN}
 
         if [ "${FAIL}" = "true" ]; then
           exit 1
@@ -68,10 +70,9 @@ jobs:
 
         echo "Build and push the docker image"
         cd ${WORKDIR}
-        echo "test: $IMAGE_TAG" >> app-deploy.yaml
-        # appsody build -v --tag ${IMAGE_NAME}:${IMAGE_TAG} --push
-        # docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
-        # docker push ${IMAGE_NAME}
+        appsody build -v --tag ${IMAGE_NAME}:${IMAGE_TAG} --push
+        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
+        docker push ${IMAGE_NAME}
       env:
         DOCKER_U: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_P: ${{ secrets.DOCKER_PASSWORD }}
@@ -93,10 +94,9 @@ jobs:
 
         echo "Build and push the docker image"
         cd ${WORKDIR}
-        echo "test: $IMAGE_TAG" >> app-deploy.yaml
-        # appsody build -v --tag ${IMAGE_NAME}:${IMAGE_TAG} --push
-        # docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
-        # docker push ${IMAGE_NAME}
+        appsody build -v --tag ${IMAGE_NAME}:${IMAGE_TAG} --push
+        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
+        docker push ${IMAGE_NAME}
       env:
         DOCKER_U: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_P: ${{ secrets.DOCKER_PASSWORD }}
@@ -142,10 +142,6 @@ jobs:
         service-name: fleetms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
-        message: "Custom message for fleetms"
-        branch: foo
-#      env:
-#        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
     - name: Retrieve voyages-ms app-deploy.yaml
       uses: actions/download-artifact@v2
       with:
@@ -158,7 +154,4 @@ jobs:
         service-name: voyagesms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
-        message: "Custom message for voyagesms"
-        branch: foo
-#      env:
-#        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
+
