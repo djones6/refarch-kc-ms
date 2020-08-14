@@ -143,7 +143,7 @@ jobs:
       id: configure-git
       uses: djones6/git-config-action@master
       with:
-        gitops-email: ${{ secrets.GITOPS_EMAIL }}
+        user-email: ${{ secrets.GITOPS_EMAIL }}
         gitops-token: ${{ secrets.GITOPS_TOKEN }}
     - name: Retrieve fleet-ms app-deploy.yaml
       uses: actions/download-artifact@v2
