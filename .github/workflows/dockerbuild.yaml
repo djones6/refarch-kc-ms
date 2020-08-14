@@ -35,6 +35,8 @@ jobs:
         validate_secret DOCKER_REPOSITORY ${DOCKER_REPOSITORY}
         validate_secret DOCKER_IMAGE_FLEET ${DOCKER_IMAGE_FLEET}
         validate_secret DOCKER_IMAGE_VOYAGES ${DOCKER_IMAGE_VOYAGES}
+        validate_secret GITOPS_EMAIL ${GITOPS_EMAIL}
+        validate_secret GITOPS_TOKEN ${GITOPS_TOKEN}
 
         if [ "${FAIL}" = "true" ]; then
           exit 1
