@@ -161,6 +161,8 @@ jobs:
         service-name: fleetms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
+        message: "Custom message for fleetms"
+        branch: foo
 #      env:
 #        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
     - name: Retrieve voyages-ms app-deploy.yaml
@@ -175,5 +177,7 @@ jobs:
         service-name: voyagesms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
+        message: "Custom message for voyagesms"
+        branch: foo
 #      env:
 #        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
