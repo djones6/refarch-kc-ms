@@ -155,10 +155,10 @@ jobs:
     - name: Update fleet-ms app-deploy.yaml in GitOps repo
       id: update-fleet-gitops
       uses: djones6/appsody-gitops-update-action@master
-      env:
-        SERVICE_NAME: fleetms
-        GITHUB_ORG: djones6
-        GITOPS_REPO_NAME: refarch-kc-gitops
+      with:
+        service-name: fleetms
+        github-org: djones6
+        gitops-repo-name: refarch-kc-gitops
     - name: Retrieve voyages-ms app-deploy.yaml
       uses: actions/download-artifact@v2
       with:
@@ -167,7 +167,7 @@ jobs:
     - name: Update voyages-ms app-deploy.yaml in GitOps repo
       id: update-voyages-gitops
       uses: djones6/appsody-gitops-update-action@master
-      env:
-        SERVICE_NAME: voyagesms
-        GITHUB_ORG: djones6
-        GITOPS_REPO_NAME: refarch-kc-gitops
+      with:
+        service-name: voyagesms
+        github-org: djones6
+        gitops-repo-name: refarch-kc-gitops
