@@ -74,7 +74,7 @@ jobs:
 
         echo "Build and push the docker image"
         cd ${WORKDIR}
-        echo "test: $IMAGE_TAG" app-deploy.yaml
+        echo "test: $IMAGE_TAG" >> app-deploy.yaml
         # appsody build -v --tag ${IMAGE_NAME}:${IMAGE_TAG} --push
         # docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
         # docker push ${IMAGE_NAME}
