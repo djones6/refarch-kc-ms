@@ -143,7 +143,7 @@ jobs:
         git config --global user.email "${GITOPS_EMAIL}"
         git config --global user.name "GitOps Update"
         git config --global credential.https://github.com.username "None"
-        git config --global credential.helper '!f() { echo "password=${GITOPS_TOKEN}"; }; f'
+        git config --global credential.helper "!f() { echo \"password=${GITOPS_TOKEN}\"; }; f"
       env:
         GITOPS_EMAIL: ${{ secrets.GITOPS_EMAIL }}
         GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
@@ -159,6 +159,8 @@ jobs:
         service-name: fleetms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
+#      env:
+#        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
     - name: Retrieve voyages-ms app-deploy.yaml
       uses: actions/download-artifact@v2
       with:
@@ -171,3 +173,5 @@ jobs:
         service-name: voyagesms
         github-org: djones6
         gitops-repo-name: refarch-kc-gitops
+#      env:
+#        GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
